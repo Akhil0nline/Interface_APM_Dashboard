@@ -10,5 +10,11 @@ steps:
 - script: 'npm i && npx playwright install'
   displayName: 'Install Playwright'
 
-
+- task: PublishMultipleCucumberReport@1
+  displayName: 'Publish Cucumber Report'
+  inputs:
+    jsonDir: 'test-results'
+    outputPath: 'test-results/reports'
+    theme: 'bootstrap'
+    reportSuiteAsScenarios: true
 
