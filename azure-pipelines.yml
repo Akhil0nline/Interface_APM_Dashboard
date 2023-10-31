@@ -1,5 +1,5 @@
-pool:
-steps:
+
+
 - task: Npm@1
   displayName: 'Execute Test'
   inputs:
