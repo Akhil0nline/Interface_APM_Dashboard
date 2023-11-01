@@ -13,11 +13,12 @@ steps:
   inputs:
       command: 'custom'
       customCommand: 'run test'
-
+  displayName: 'Execute Test'
 - task: PublishMultipleCucumberReport@1
   inputs:
     jsonDir: 'test-results'
-    outputPath: 'test-results/reports'
+    outputPath: 'test-results\reports'
     theme: 'bootstrap'
     reportSuiteAsScenarios: true
+
 
