@@ -1,5 +1,8 @@
 
+
 steps:
+- script: 'npm i && npx playwright install'
+  displayName: 'Install Playwright'
 - task: Npm@1
   displayName: 'Execute Test'
   inputs:
@@ -7,8 +10,7 @@ steps:
     verbose: false
     customCommand: 'run test '
 
-- script: 'npm i && npx playwright install'
-  displayName: 'Install Playwright'
+
 
 - task: PublishMultipleCucumberReport@1
   displayName: 'Publish Cucumber Report'
