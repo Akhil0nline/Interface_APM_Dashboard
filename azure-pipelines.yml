@@ -1,0 +1,26 @@
+pool:
+  name: Azure Pipelines
+  demands: npm
+
+steps:
+- script: 'npm i && npx playwright install'
+  displayName: 'Install Playwright'
+
+- task: Npm@1
+  displayName: 'Execute Test'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'run test '
+
+- task: JakubRumpca.azure-pipelines-html-report.PublishHtmlReport.PublishHtmlReport@1
+  displayName: 'Publish Html Report'
+  inputs:
+    tabName: 'Playwright Reports'
+    reportDir: 'test-results/cucumber-report.html'
+
+- task: MaciejMaciejewski.azure-pipelines-cucumber.PublishCucumberReport.PublishCucumberReport@1
+  displayName: 'Publish Cucumber Report'
+  inputs:
+    jsonDir: 'test-results'
+    outputPath: 'test-results/reports'
