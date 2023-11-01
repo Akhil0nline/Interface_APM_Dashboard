@@ -16,8 +16,6 @@ steps:
 - task: PublishMultipleCucumberReport@1
   displayName: 'Publish Cucumber Report'
   inputs:
-- task: PublishMultipleCucumberReport@1
-  inputs:
     jsonDir: '$(System.DefaultWorkingDirectory)'
     outputPath: '$(System.DefaultWorkingDirectory)'
     theme: 'bootstrap'
