@@ -19,8 +19,11 @@
   "devDependencies": {
     "@cucumber/cucumber": "^9.2.0",
     "@faker-js/faker": "^8.0.2",
-    "@playwright/test": "^1.35.1",
+    "@playwright/test": "^1.39.0",
     "@types/node": "^20.3.3",
+    "@wdio/allure-reporter": "^8.21.0",
+    "allure-commandline": "^2.24.1",
+    "allure-playwright": "^2.9.2",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "fs-extra": "^11.1.1",

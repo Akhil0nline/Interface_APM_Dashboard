@@ -24,6 +24,7 @@ module.exports = {
         ]
 
     },
+
     rerun: {
         formatOptions: {
             snippetInterface: "async-await"
