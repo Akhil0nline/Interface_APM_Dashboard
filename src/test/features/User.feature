@@ -1,6 +1,6 @@
 Feature: Dashboard User module functionalities for APM application
 
-  @APMTEST1
+  @APMTEST
   Scenario Outline: Verify the admin user privilage for user roles functionlity is working as expected
     Given user navigates to the APM application
     When user enter valid login credentials for APM
