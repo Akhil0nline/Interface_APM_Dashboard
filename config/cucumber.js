@@ -7,7 +7,7 @@ module.exports = {
         paths: [
             "src/test/features/"
         ],
-        publishQuiet: true,
+        publishQuiet: false,
         dryRun: false,
         require: [
             "src/test/steps/*.ts",
@@ -29,7 +29,7 @@ module.exports = {
         formatOptions: {
             snippetInterface: "async-await"
         },
-        publishQuiet: true,
+        publishQuiet: false,
         dryRun: false,
         require: [
             "src/test/steps/*.ts",
