@@ -1,6 +1,6 @@
 Feature: Dashboard User module functionalities for APM application
 
-  @APMTEST
+  @APMUSER
   Scenario Outline: Verify the admin user privilage for user roles functionlity is working as expected
     Given user navigates to the APM application
     When user enter valid login credentials for APM
@@ -9,7 +9,7 @@ Feature: Dashboard User module functionalities for APM application
     Then user click on logout button and should successfully logout from the application
     Then user login to the application with new role and verify
 
-  @APMTEST
+  @APMUSER
   Scenario Outline: Verify the admin user privilage for add an already existing user
     Given user navigates to the APM application
     When user enter valid login credentials for APM
@@ -18,7 +18,7 @@ Feature: Dashboard User module functionalities for APM application
     Then user validation toast message should displayed
     Then user click on logout button and should successfully logout from the application
 
-  @APMTEST
+  @APMUSER
   Scenario Outline: Verify the admin user privilage for add an invalid interface email user
     Given user navigates to the APM application
     When user enter valid login credentials for APM
@@ -27,7 +27,7 @@ Feature: Dashboard User module functionalities for APM application
     Then user validation toast message should displayed
     Then user click on logout button and should successfully logout from the application
 
-  @APMTEST
+  @APMUSER
   Scenario Outline: Verify the admin user privilage for add an valid interface user
     Given user navigates to the APM application
     When user enter valid login credentials for APM
@@ -36,7 +36,7 @@ Feature: Dashboard User module functionalities for APM application
     Then user validation toast message should displayed
     Then user click on logout button and should successfully logout from the application
 
-  @APMTEST
+  @APMUSER
   Scenario Outline: Verify the admin user privilage to change active/inactive an user
     Given user navigates to the APM application
     When user enter valid login credentials for APM
@@ -45,7 +45,7 @@ Feature: Dashboard User module functionalities for APM application
     Then user validation toast message should displayed
     Then user click on logout button and should successfully logout from the application
 
-  @APMTEST
+  @APMUSER
   Scenario Outline: Verify the inactive user able to login to the application or not
     Given user navigates to the APM application
     When user enter valid login credentials for APM
