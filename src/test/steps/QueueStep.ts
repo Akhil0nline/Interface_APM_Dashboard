@@ -44,4 +44,46 @@ Then('apply filter and verify the search result for queue', async () => {
 
 })
 
+Then('apply filter with valid keyword and verify the result', async () => {
+
+    await QueuePage.Keywordfilter(data.Keyword);
+
+})
+
+
+Then('apply filter with random keyword and verify the result', async () => {
+
+    await QueuePage.RandomKeywordfilter(data.userPass);
+
+})
+
+Then('user apply the filter with keyword and go to other page and back to Queue page', async () => {
+
+    await QueuePage.filtersearchclear(data.userPass);
+
+})
+
+Then('user click on view history and sort all the old data', async () => {
+
+    await QueuePage.viewhistory();
+    await QueuePage.viewhistorystort();
+
+})
+
+Then('user click on view history to disable the feature', async () => {
+
+    await QueuePage.viewhistorydisabled();
+})
+
+Then('user click on export to excel and excel should downloaded successfully', async () => {
+
+    await QueuePage.dataexporttoexcel(data.Keyword);
+})
+
+Then('user click on export to excel with no data and validation error should displayed', async () => {
+
+    await QueuePage.nodataexporttoexcel(data.userPass);
+})
+
+
 

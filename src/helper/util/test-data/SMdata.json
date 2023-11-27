@@ -7,5 +7,6 @@
     "password": "Interface7",
     "Title": "Automated Panel Maintenance",
     "Invalid": "testuser@interfacesys.com",
-    "Valid": "akza.varghese@interfacesys.com"
+    "Valid": "akza.varghese@interfacesys.com",
+    "Keyword": "RPABOT"
 }
