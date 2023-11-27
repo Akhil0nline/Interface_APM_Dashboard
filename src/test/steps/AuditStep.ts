@@ -46,3 +46,19 @@ Then('go to audit menu and search for the user', async () => {
 Then('verify the audit log for the respective user', async () => {
     await AuditPage.verifyauditlog();
 })
+
+When('the user do the filter search for audit', async () => {
+    await AuditPage.navigatetomenu();
+    await AuditPage.AuditFilterSearch();
+    await AuditPage.chooseloginuser();
+})
+
+Then('user clear the filter search for audit', async () => {
+    await AuditPage.AuditClearFilterSearch();
+})
+
+Then('verify the search result for audit log', async () => {
+    await AuditPage.VerifyFilterSearch();
+})
+
+
