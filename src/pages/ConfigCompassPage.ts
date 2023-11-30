@@ -29,7 +29,17 @@ export default class ConfigCompassPage {
         CurrentStatus5: "//tbody/tr[5]/td[4]",
         Toastmessage: " //div[contains(text(),'Successfully updated robot information ')]",
         ProcessDropdown: "(//span[text()='Process Case'])[1]",
-        BotName: "//td[text()=' EC Bot 1 ']"
+        BotName: "//td[text()=' EC Bot 1 ']",
+        Arrow1Case: "(//span[text()='Process Case'])[1]",
+        Arrow1Excel: "(//span[text()='Process Excel'])[1]",
+        Arrow2Case: "(//span[text()='Process Case'])[2]",
+        Arrow2Excel: "(//span[text()='Process Excel'])[2]",
+        PrimaryRole: "//tbody/tr[1]/td[6]",
+        ExcelRole: "//span[contains(text(),'Process Excel')]",
+        PopYes: "//span[contains(text(),'Yes')]",
+        PopNo: "//span[contains(text(),'No')]",
+        DefaultValue: "(//span[@class='mdc-list-item__primary-text'])[1]"
+
 
 
     }
@@ -176,6 +186,110 @@ export default class ConfigCompassPage {
             console.log(Toast);
             const locator = await this.page.innerText(this.Elements.CurrentStatus5);
             console.log("Plano Virtual Bot current status is " + locator);
+
+        }
+    }
+
+    async EC_Bot_1_PrimaryRole() {
+
+
+        await fixture.page.waitForTimeout(5000);
+
+        const Status = await this.page.locator(this.Elements.Arrow1Case)
+        if (await Status.isVisible()) {
+
+            await fixture.page.waitForTimeout(5000);
+            await this.page.click(this.Elements.Arrow1Case);
+            await this.page.click(this.Elements.ExcelRole);
+            await this.page.click(this.Elements.PopYes);
+            const Toast = await this.page.innerText(this.Elements.Toastmessage);
+            console.log(Toast);
+
+
+        }
+        else {
+            await fixture.page.waitForTimeout(5000);
+            await this.page.click(this.Elements.Arrow1Excel);
+            await this.page.click(this.Elements.DefaultValue);
+            await this.page.click(this.Elements.PopYes);
+            const locator = await this.page.innerText(this.Elements.PrimaryRole);
+            console.log("Primary Role is " + locator);
+
+        }
+    }
+
+
+    async EC_Bot_1_PrimaryRoleDefault() {
+
+        await fixture.page.waitForTimeout(5000);
+        const Status = await this.page.locator(this.Elements.Arrow1Excel)
+        if (await Status.isVisible()) {
+
+            await fixture.page.waitForTimeout(5000);
+            await this.page.click(this.Elements.Arrow1Excel);
+            await this.page.click(this.Elements.DefaultValue);
+            await this.page.click(this.Elements.PopYes);
+            const Toast = await this.page.innerText(this.Elements.Toastmessage);
+            console.log(Toast);
+
+
+        }
+        else {
+            await fixture.page.waitForTimeout(5000);
+            const locator = await this.page.innerText(this.Elements.PrimaryRole);
+            console.log("Primary Role is " + locator);
+
+        }
+    }
+
+    async EC_Bot_2_PrimaryRole() {
+
+
+        await fixture.page.waitForTimeout(5000);
+
+        const Status = await this.page.locator(this.Elements.Arrow2Case)
+        if (await Status.isVisible()) {
+
+            await fixture.page.waitForTimeout(5000);
+            await this.page.click(this.Elements.Arrow2Case);
+            await this.page.click(this.Elements.ExcelRole);
+            await this.page.click(this.Elements.PopYes);
+            const Toast = await this.page.innerText(this.Elements.Toastmessage);
+            console.log(Toast);
+
+
+        }
+        else {
+            await fixture.page.waitForTimeout(5000);
+            await this.page.click(this.Elements.Arrow2Excel);
+            await this.page.click(this.Elements.DefaultValue);
+            await this.page.click(this.Elements.PopYes);
+            const locator = await this.page.innerText(this.Elements.PrimaryRole);
+            console.log("Primary Role is " + locator);
+
+        }
+    }
+
+
+    async EC_Bot_2_PrimaryRoleDefault() {
+
+        await fixture.page.waitForTimeout(5000);
+        const Status = await this.page.locator(this.Elements.Arrow2Excel)
+        if (await Status.isVisible()) {
+
+            await fixture.page.waitForTimeout(5000);
+            await this.page.click(this.Elements.Arrow2Excel);
+            await this.page.click(this.Elements.DefaultValue);
+            await this.page.click(this.Elements.PopYes);
+            const Toast = await this.page.innerText(this.Elements.Toastmessage);
+            console.log(Toast);
+
+
+        }
+        else {
+            await fixture.page.waitForTimeout(5000);
+            const locator = await this.page.innerText(this.Elements.PrimaryRole);
+            console.log("Primary Role is " + locator);
 
         }
     }
