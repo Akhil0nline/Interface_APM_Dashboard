@@ -45,3 +45,26 @@ Then('verify the bot actions active to inactive or inversely', async () => {
     await ConfigCompassPage.PlanoVirtualBot();
 
 })
+
+Then('change and verify the primary role for the bots', async () => {
+
+    await ConfigCompassPage.EC_Bot_1_PrimaryRole();
+    await ConfigCompassPage.ECBot1();
+    await ConfigCompassPage.EC_Bot_2_PrimaryRole();
+    await ConfigCompassPage.ECBot2();
+
+})
+
+Then('verify the failue threshold edit actions', async () => {
+
+    await ConfigCompassPage.FailureThreshold();
+
+})
+
+Then('verify the max count and blank field validations', async () => {
+
+    await ConfigCompassPage.FieldValidations();
+    await ConfigCompassPage.MaxlimitField();
+
+
+})

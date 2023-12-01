@@ -1,8 +1,7 @@
 import { expect, Page } from "@playwright/test";
 import PlaywrightWrapper from "../helper/wrapper/PlaywrightWrappers";
 import { fixture } from "../hooks/pageFixture";
-import { url } from "inspector";
-import { PassThrough } from "stream";
+import { faker } from '@faker-js/faker';
 
 
 export default class ConfigCompassPage {
@@ -28,17 +27,23 @@ export default class ConfigCompassPage {
         CurrentStatus4: "//tbody/tr[4]/td[4]",
         CurrentStatus5: "//tbody/tr[5]/td[4]",
         Toastmessage: " //div[contains(text(),'Successfully updated robot information ')]",
-        ProcessDropdown: "(//span[text()='Process Case'])[1]",
+        ProcessDropdown: "//span[text()='Process Case']",
         BotName: "//td[text()=' EC Bot 1 ']",
-        Arrow1Case: "(//span[text()='Process Case'])[1]",
-        Arrow1Excel: "(//span[text()='Process Excel'])[1]",
-        Arrow2Case: "(//span[text()='Process Case'])[2]",
-        Arrow2Excel: "(//span[text()='Process Excel'])[2]",
+        ExcelDropdown: "(//span[text()='Process Excel'])[2]",
         PrimaryRole: "//tbody/tr[1]/td[6]",
-        ExcelRole: "//span[contains(text(),'Process Excel')]",
+        PrimaryRole1: "//tbody/tr[2]/td[6]",
         PopYes: "//span[contains(text(),'Yes')]",
         PopNo: "//span[contains(text(),'No')]",
-        DefaultValue: "(//span[@class='mdc-list-item__primary-text'])[1]"
+        DefaultValue: "(//span[@class='mdc-list-item__primary-text'])[1]",
+        FailureThreshold: "//span[text()='Failure Threshold']",
+        Createicon: "//i[text()='create']",
+        Valuefield: "//input[@placeholder='Value']",
+        CommentBox: "//mat-label[text()='Comments']",
+        SubmitButton: "//span[text()='Submit']",
+        UpdatedToast: "//div[contains(text(),' Updated successfully ')]",
+        CountValue: "(//td[@role='cell'])[3]",
+        EditConfigText: "//h2[text()='Edit Configuration']",
+        CancelButton: "//span[text()='Cancel']"
 
 
 
@@ -195,104 +200,162 @@ export default class ConfigCompassPage {
 
         await fixture.page.waitForTimeout(5000);
 
-        const Status = await this.page.locator(this.Elements.Arrow1Case)
+        const Status = await this.page.locator(this.Elements.ProcessDropdown)
         if (await Status.isVisible()) {
 
             await fixture.page.waitForTimeout(5000);
-            await this.page.click(this.Elements.Arrow1Case);
-            await this.page.click(this.Elements.ExcelRole);
-            await this.page.click(this.Elements.PopYes);
-            const Toast = await this.page.innerText(this.Elements.Toastmessage);
-            console.log(Toast);
+            await this.page.click(this.Elements.PrimaryRole);
+            await this.page.click(this.Elements.ExcelDropdown);
+            const Status = await this.page.locator(this.Elements.PopYes)
+            if (await Status.isVisible()) {
+                await this.page.click(this.Elements.PopYes);
+
+            } else {
+                const Toast = await this.page.innerText(this.Elements.PrimaryRole);
+                console.log("Primary Role of EC Bot 1 is " + Toast);
+
+            }
+
 
 
         }
         else {
             await fixture.page.waitForTimeout(5000);
-            await this.page.click(this.Elements.Arrow1Excel);
-            await this.page.click(this.Elements.DefaultValue);
+            await this.page.click(this.Elements.PrimaryRole);
+            await this.page.click(this.Elements.ProcessDropdown);
             await this.page.click(this.Elements.PopYes);
-            const locator = await this.page.innerText(this.Elements.PrimaryRole);
-            console.log("Primary Role is " + locator);
-
-        }
-    }
-
-
-    async EC_Bot_1_PrimaryRoleDefault() {
-
-        await fixture.page.waitForTimeout(5000);
-        const Status = await this.page.locator(this.Elements.Arrow1Excel)
-        if (await Status.isVisible()) {
-
-            await fixture.page.waitForTimeout(5000);
-            await this.page.click(this.Elements.Arrow1Excel);
-            await this.page.click(this.Elements.DefaultValue);
-            await this.page.click(this.Elements.PopYes);
-            const Toast = await this.page.innerText(this.Elements.Toastmessage);
-            console.log(Toast);
-
-
-        }
-        else {
-            await fixture.page.waitForTimeout(5000);
-            const locator = await this.page.innerText(this.Elements.PrimaryRole);
-            console.log("Primary Role is " + locator);
+            const locator = await this.page.innerText(this.Elements.Toastmessage);
+            console.log("Primary Role EC Bot 1 is " + locator);
 
         }
     }
 
     async EC_Bot_2_PrimaryRole() {
 
-
         await fixture.page.waitForTimeout(5000);
-
-        const Status = await this.page.locator(this.Elements.Arrow2Case)
+        const Status = await this.page.locator(this.Elements.ProcessDropdown)
         if (await Status.isVisible()) {
 
             await fixture.page.waitForTimeout(5000);
-            await this.page.click(this.Elements.Arrow2Case);
-            await this.page.click(this.Elements.ExcelRole);
-            await this.page.click(this.Elements.PopYes);
-            const Toast = await this.page.innerText(this.Elements.Toastmessage);
-            console.log(Toast);
+            await this.page.click(this.Elements.PrimaryRole1);
+            await this.page.click(this.Elements.ExcelDropdown);
+            const Status = await this.page.locator(this.Elements.PopYes)
+            if (await Status.isVisible()) {
+                await this.page.click(this.Elements.PopYes);
 
+            } else {
+                const Toast = await this.page.innerText(this.Elements.PrimaryRole);
+                console.log("Primary Role EC Bot 2 is " + Toast);
+
+            }
 
         }
         else {
             await fixture.page.waitForTimeout(5000);
-            await this.page.click(this.Elements.Arrow2Excel);
-            await this.page.click(this.Elements.DefaultValue);
+            await this.page.click(this.Elements.PrimaryRole1);
+            await this.page.click(this.Elements.ProcessDropdown);
             await this.page.click(this.Elements.PopYes);
-            const locator = await this.page.innerText(this.Elements.PrimaryRole);
+            const locator = await this.page.innerText(this.Elements.Toastmessage);
             console.log("Primary Role is " + locator);
 
         }
     }
 
-
-    async EC_Bot_2_PrimaryRoleDefault() {
+    async FailureThreshold() {
 
         await fixture.page.waitForTimeout(5000);
-        const Status = await this.page.locator(this.Elements.Arrow2Excel)
+        await this.page.click(this.Elements.FailureThreshold);
+        const Status = await this.page.locator(this.Elements.Createicon)
+        await fixture.page.waitForTimeout(5000);
         if (await Status.isVisible()) {
+            await fixture.page.waitForTimeout(5000);
+            await this.page.click(this.Elements.Createicon);
+            await fixture.page.waitForTimeout(5000);
+            await this.page.click(this.Elements.Valuefield);
+            await fixture.page.waitForTimeout(5000);
+            await this.page.keyboard.press('Backspace');
+            await this.page.fill(this.Elements.Valuefield, "5")
+            await this.page.click(this.Elements.CommentBox);
+            await fixture.page.waitForTimeout(5000);
+            const testcomments = faker.commerce.productDescription()
+            await this.page.fill(this.Elements.CommentBox, testcomments)
+            await fixture.page.waitForTimeout(5000);
+            await this.page.click(this.Elements.SubmitButton);
+
+            const Update = await this.page.innerText(this.Elements.UpdatedToast);
+            console.log(Update);
+            const CountValue = await this.page.innerText(this.Elements.CountValue);
+            console.log(CountValue);
 
             await fixture.page.waitForTimeout(5000);
-            await this.page.click(this.Elements.Arrow2Excel);
-            await this.page.click(this.Elements.DefaultValue);
-            await this.page.click(this.Elements.PopYes);
-            const Toast = await this.page.innerText(this.Elements.Toastmessage);
-            console.log(Toast);
-
+            await this.page.click(this.Elements.Createicon);
+            await this.page.click(this.Elements.Valuefield);
+            await fixture.page.waitForTimeout(5000);
+            await this.page.keyboard.press('Backspace');
+            await this.page.fill(this.Elements.Valuefield, "4")
+            await fixture.page.waitForTimeout(5000);
+            await this.page.click(this.Elements.CommentBox);
+            await this.page.locator(this.Elements.CommentBox).clear();
+            await fixture.page.waitForTimeout(5000);
+            await this.page.click(this.Elements.SubmitButton);
 
         }
         else {
-            await fixture.page.waitForTimeout(5000);
-            const locator = await this.page.innerText(this.Elements.PrimaryRole);
-            console.log("Primary Role is " + locator);
+            console.log("Edit option is not available");
 
         }
     }
 
+    async FieldValidations() {
 
+        await fixture.page.waitForTimeout(5000);
+        await this.page.click(this.Elements.FailureThreshold);
+        await this.page.click(this.Elements.Createicon);
+        await this.page.click(this.Elements.Valuefield);
+        await fixture.page.waitForTimeout(5000);
+        await this.page.keyboard.press('Backspace');
+        await this.page.click(this.Elements.SubmitButton);
+
+        const BoxText = await this.page.locator(this.Elements.EditConfigText);
+        if (await BoxText.isVisible()) {
+
+            console.log("Empty value validation passed");
+
+        } else {
+
+            console.log("Empty value accepted : The Field validation is failed")
+
+        }
+
+        await this.page.click(this.Elements.CancelButton);
+
+
+    }
+
+    async MaxlimitField() {
+
+        await fixture.page.waitForTimeout(5000);
+        await this.page.click(this.Elements.FailureThreshold);
+        await this.page.click(this.Elements.Createicon);
+        await this.page.click(this.Elements.Valuefield);
+        await fixture.page.waitForTimeout(5000);
+        await this.page.keyboard.press('Backspace');
+        await this.page.fill(this.Elements.Valuefield, "6")
+        await this.page.click(this.Elements.SubmitButton);
+
+        const BoxText = await this.page.locator(this.Elements.EditConfigText);
+        if (await BoxText.isVisible()) {
+
+            console.log("Max count of 5 exceeded field validation passed");
+
+        } else {
+
+            console.log("Max count of 5 exceeded : The Field validation is failed")
+
+        }
+
+        await this.page.click(this.Elements.CancelButton);
+
+
+    }
 }
