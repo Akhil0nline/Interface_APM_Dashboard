@@ -68,3 +68,25 @@ Then('verify the max count and blank field validations', async () => {
 
 
 })
+
+Then('verify Email config - EC search and edit actions', async () => {
+
+    await ConfigCompassPage.EmailConfig_EC_Validation(data.userName);
+    await ConfigCompassPage.EmailConfig_EC(data.userName, data.UsersEC);
+
+
+})
+
+Then('verify Email config - Plano search and edit actions', async () => {
+
+    await ConfigCompassPage.EmailConfig_Plano_Validation(data.userName);
+    await ConfigCompassPage.EmailConfig_Plano(data.userName, data.UsersPlano);
+
+})
+
+Then('search for invalid keyword and verify the response', async () => {
+
+    await ConfigCompassPage.EmailConfig_EC_Search(data.Invalid);
+    await ConfigCompassPage.EmailConfig_Plano_Search(data.Invalid);
+
+})

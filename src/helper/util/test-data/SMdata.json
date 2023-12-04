@@ -8,5 +8,7 @@
     "Title": "Automated Panel Maintenance",
     "Invalid": "testuser@interfacesys.com",
     "Valid": "akza.varghese@interfacesys.com",
-    "Keyword": "RPABOT"
+    "Keyword": "RPABOT",
+    "UsersEC": "akhil.krishnan@interfacesys.com, arun.retnakaran@interfacesys.com",
+    "UsersPlano": "akhil.krishnan@interfacesys.com, arun.retnakaran@interfacesys.com, sarath.krishnankutty@interfacesys.com"
 }

@@ -43,7 +43,17 @@ export default class ConfigCompassPage {
         UpdatedToast: "//div[contains(text(),' Updated successfully ')]",
         CountValue: "(//td[@role='cell'])[3]",
         EditConfigText: "//h2[text()='Edit Configuration']",
-        CancelButton: "//span[text()='Cancel']"
+        CancelButton: "//span[text()='Cancel']",
+
+        EmailConfigEC: "//span[text()='Email Configurations - EC']",
+        EmailConfigPlano: "//span[text()='Email Configurations - Plano']",
+        SearchEC: "//input[@placeholder='Search']",
+        SerialNo: "(//td[@role='cell'])[1]",
+        EditConfigEmail: "(//i[text()='create'])[1]",
+        Valuebox: "//textarea[@placeholder='Value']",
+
+
+
 
 
 
@@ -292,7 +302,7 @@ export default class ConfigCompassPage {
             await this.page.click(this.Elements.Valuefield);
             await fixture.page.waitForTimeout(5000);
             await this.page.keyboard.press('Backspace');
-            await this.page.fill(this.Elements.Valuefield, "4")
+            await this.page.type(this.Elements.Valuefield, "4")
             await fixture.page.waitForTimeout(5000);
             await this.page.click(this.Elements.CommentBox);
             await this.page.locator(this.Elements.CommentBox).clear();
@@ -340,7 +350,7 @@ export default class ConfigCompassPage {
         await this.page.click(this.Elements.Valuefield);
         await fixture.page.waitForTimeout(5000);
         await this.page.keyboard.press('Backspace');
-        await this.page.fill(this.Elements.Valuefield, "6")
+        await this.page.type(this.Elements.Valuefield, "6")
         await this.page.click(this.Elements.SubmitButton);
 
         const BoxText = await this.page.locator(this.Elements.EditConfigText);
@@ -357,5 +367,158 @@ export default class ConfigCompassPage {
         await this.page.click(this.Elements.CancelButton);
 
 
+    }
+
+    async EmailConfig_EC_Validation(userName: string) {
+
+        await fixture.page.waitForTimeout(5000);
+        await this.page.click(this.Elements.EmailConfigEC);
+        await this.page.click(this.Elements.SearchEC);
+        await fixture.page.waitForTimeout(5000);
+        await this.page.type(this.Elements.SearchEC, userName);
+
+        const SerialNumber = await this.page.locator(this.Elements.SerialNo);
+        if (await SerialNumber.isVisible()) {
+            await fixture.page.waitForTimeout(5000);
+            await this.page.click(this.Elements.Createicon);
+            await this.page.locator(this.Elements.Valuebox).clear();
+            await fixture.page.waitForTimeout(5000);
+            await this.page.click(this.Elements.SubmitButton);
+            await fixture.page.waitForTimeout(5000);
+
+            const BoxText = await this.page.locator(this.Elements.EditConfigText);
+            if (await BoxText.isVisible()) {
+
+                console.log("Email Configuration - EC : Empty value validation passed");
+
+            } else {
+
+                console.log("Email Configuration - EC | Empty value accepted : The Field validation is failed")
+
+            }
+
+            await this.page.click(this.Elements.CancelButton);
+        }
+        else {
+            console.log("No data availble for search keyword");
+
+        }
+    }
+
+    async EmailConfig_EC(userName: string, UsersEC: string) {
+
+        await fixture.page.waitForTimeout(5000);
+        await this.page.click(this.Elements.SearchEC);
+        await this.page.locator(this.Elements.SearchEC).clear();
+        await this.page.type(this.Elements.SearchEC, userName);
+        await fixture.page.waitForTimeout(5000);
+
+        const SerialNumber = await this.page.locator(this.Elements.SerialNo);
+        if (await SerialNumber.isVisible()) {
+            await this.page.click(this.Elements.Createicon);
+            await this.page.locator(this.Elements.Valuebox).clear();
+            await this.page.type(this.Elements.Valuebox, UsersEC)
+            await fixture.page.waitForTimeout(5000);
+            await this.page.click(this.Elements.SubmitButton);
+            await fixture.page.waitForTimeout(5000);
+            const Update = await this.page.innerText(this.Elements.UpdatedToast);
+            console.log(Update);
+        }
+        else {
+            console.log("No data availble for search keyword");
+        }
+    }
+
+    async EmailConfig_Plano_Validation(userName: string) {
+
+        await fixture.page.waitForTimeout(5000);
+        await this.page.click(this.Elements.EmailConfigPlano);
+        await fixture.page.waitForTimeout(5000);
+        await this.page.click(this.Elements.SearchEC);
+        await this.page.type(this.Elements.SearchEC, userName);
+        await this.page.keyboard.press('Enter');
+        await fixture.page.waitForTimeout(5000);
+        const SerialNumber = await this.page.locator(this.Elements.SerialNo);
+        if (await SerialNumber.isVisible()) {
+            await this.page.click(this.Elements.Createicon);
+            await fixture.page.waitForTimeout(5000);
+            await this.page.locator(this.Elements.Valuebox).clear();
+            await fixture.page.waitForTimeout(5000);
+            await this.page.click(this.Elements.SubmitButton);
+            await fixture.page.waitForTimeout(5000);
+
+            const BoxText = await this.page.locator(this.Elements.EditConfigText);
+            if (await BoxText.isVisible()) {
+
+                console.log("Email Configuration - Plano : Empty value validation passed");
+
+            } else {
+
+                console.log("Email Configuration - EC | Empty value accepted : The Field validation is failed")
+
+            }
+
+            await this.page.click(this.Elements.CancelButton);
+        }
+        else {
+            console.log("No data availble for search keyword");
+
+        }
+    }
+
+    async EmailConfig_Plano(userName: string, UsersPlano: string) {
+
+        await fixture.page.waitForTimeout(5000);
+        await this.page.locator(this.Elements.SearchEC).clear();
+        await this.page.type(this.Elements.SearchEC, userName);
+        await fixture.page.waitForTimeout(5000);
+
+        const SerialNumber = await this.page.locator(this.Elements.SerialNo);
+        if (await SerialNumber.isVisible()) {
+            await this.page.click(this.Elements.Createicon);
+            await this.page.locator(this.Elements.Valuebox).clear();
+            await this.page.type(this.Elements.Valuebox, UsersPlano)
+            await fixture.page.waitForTimeout(5000);
+            await this.page.click(this.Elements.SubmitButton);
+            await fixture.page.waitForTimeout(5000);
+            const Update = await this.page.innerText(this.Elements.UpdatedToast);
+            console.log(Update);
+        }
+        else {
+            console.log("No data availble for search keyword");
+        }
+    }
+
+    async EmailConfig_EC_Search(Invalid: string) {
+
+        await this.page.click(this.Elements.EmailConfigEC);
+        await this.page.click(this.Elements.SearchEC);
+        await fixture.page.waitForTimeout(5000);
+        await this.page.type(this.Elements.SearchEC, Invalid);
+
+        const SerialNumber = await this.page.locator(this.Elements.SerialNo);
+        if (await SerialNumber.isVisible()) {
+            console.log("Search result displayed for invalid keyword : Testcase failed");
+        }
+        else {
+            console.log("No data availble for search keyword : Testcase passed");
+        }
+    }
+
+    async EmailConfig_Plano_Search(Invalid: string) {
+
+        await fixture.page.waitForTimeout(5000);
+        await this.page.click(this.Elements.EmailConfigPlano);
+        await this.page.click(this.Elements.SearchEC);
+        await fixture.page.waitForTimeout(5000);
+        await this.page.type(this.Elements.SearchEC, Invalid);
+
+        const SerialNumber = await this.page.locator(this.Elements.SerialNo);
+        if (await SerialNumber.isVisible()) {
+            console.log("Search result displayed for invalid keyword : Testcase failed");
+        }
+        else {
+            console.log("No data availble for search keyword : Testcase passed");
+        }
     }
 }
