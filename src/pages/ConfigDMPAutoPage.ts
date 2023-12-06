@@ -56,7 +56,7 @@ export default class ConfigDMPAutoPage {
 
         await fixture.page.waitForTimeout(5000);
         await this.page.click(this.Elements.RadiobuttonEC);
-
+        await fixture.page.waitForTimeout(5000);
         const Status = await this.page.locator(this.Elements.PopupStart)
         if (await Status.isVisible()) {
 
@@ -64,10 +64,10 @@ export default class ConfigDMPAutoPage {
             await fixture.page.waitForTimeout(5000);
             const Toast = await this.page.locator(this.Elements.Toastmessage);
             if (await Toast.isVisible()) {
-                console.log("Passed : Toastmessage displayed as " + Toast)
+                console.log("Testcase Passed : Toastmessage displayed as " + Toast)
 
             } else {
-                console.log("Failed : Toastmessage is not displayed")
+                console.log("Testcase Failed : Toastmessage is not displayed")
 
             }
             await fixture.page.waitForTimeout(5000);
@@ -168,10 +168,8 @@ export default class ConfigDMPAutoPage {
                 await this.page.keyboard.press('Backspace');
                 await this.page.type(this.Elements.Valuefield, "5")
                 await fixture.page.waitForTimeout(5000);
-                await this.page.click(this.Elements.CommentBox);
-                await this.page.locator(this.Elements.CommentBox).clear();
-                await fixture.page.waitForTimeout(5000);
                 await this.page.click(this.Elements.SubmitButton);
+                await fixture.page.waitForTimeout(5000);
 
             } else {
                 const Success = await this.page.innerText(this.Elements.Toastmessage);
