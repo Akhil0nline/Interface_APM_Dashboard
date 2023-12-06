@@ -30,7 +30,7 @@ Then('user should login successfully as admin user - DMP Automation', async () =
 
 })
 
-When('choose DMP Automation from configurations menu', async () => {
+When('choose DMP Automation from configurations menu - DMP Automation', async () => {
 
     await ConfigDMPAutoPage.navigatetomenu();
 
@@ -40,5 +40,39 @@ Then('verify the EC and Plano actions active to inactive or inversely', async ()
 
     await ConfigDMPAutoPage.Automation_EC();
     await ConfigDMPAutoPage.Automation_Plano();
+
+})
+
+Then('verify the max count and blank field validations - DMP Automation', async () => {
+
+    await ConfigDMPAutoPage.FieldValidations();
+    await ConfigDMPAutoPage.MaxlimitField();
+
+})
+
+Then('verify the failue threshold edit actions - DMP Automation', async () => {
+
+    await ConfigDMPAutoPage.FailureThreshold();
+
+})
+
+Then('verify Email config - EC search and edit actions - DMP Automation', async () => {
+
+    await ConfigDMPAutoPage.DMP_EmailConfig_EC_Validation(data.userName);
+    await ConfigDMPAutoPage.DMP_EmailConfig_EC(data.userName)
+
+})
+
+Then('verify Email config - Plano search and edit actions - DMP Automation', async () => {
+
+    await ConfigDMPAutoPage.DMP_EmailConfig_Plano_Validation(data.userName);
+    await ConfigDMPAutoPage.DMP_EmailConfig_Plano(data.userName, data.UsersTwo);
+
+})
+
+Then('search for invalid keyword and verify the response - DMP Automation', async () => {
+
+    await ConfigDMPAutoPage.DMP_EmailConfig_EC_Search(data.Invalid);
+    await ConfigDMPAutoPage.DMP_EmailConfig_Plano_Search(data.Invalid);
 
 })
