@@ -410,6 +410,7 @@ export default class ConfigCompassPage {
         await fixture.page.waitForTimeout(5000);
         await this.page.click(this.Elements.SearchEC);
         await this.page.locator(this.Elements.SearchEC).clear();
+        await fixture.page.waitForTimeout(5000);
         await this.page.type(this.Elements.SearchEC, userName);
         await fixture.page.waitForTimeout(5000);
 
@@ -417,6 +418,7 @@ export default class ConfigCompassPage {
         if (await SerialNumber.isVisible()) {
             await this.page.click(this.Elements.Createicon);
             await this.page.locator(this.Elements.Valuebox).clear();
+            await fixture.page.waitForTimeout(5000);
             await this.page.type(this.Elements.Valuebox, UsersEC)
             await fixture.page.waitForTimeout(5000);
             await this.page.click(this.Elements.SubmitButton);
@@ -436,7 +438,6 @@ export default class ConfigCompassPage {
         await fixture.page.waitForTimeout(5000);
         await this.page.click(this.Elements.SearchEC);
         await this.page.type(this.Elements.SearchEC, userName);
-        await this.page.keyboard.press('Enter');
         await fixture.page.waitForTimeout(5000);
         const SerialNumber = await this.page.locator(this.Elements.SerialNo);
         if (await SerialNumber.isVisible()) {

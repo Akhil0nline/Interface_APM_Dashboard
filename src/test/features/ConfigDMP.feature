@@ -25,7 +25,7 @@ Feature: Configuration module DMP Automation functionalities for APM application
         When choose DMP Automation from configurations menu - DMP Automation
         Then verify the failue threshold edit actions - DMP Automation
 
-    @CONFIGDMP1
+    @CONFIGDMP
     Scenario Outline: Verify the DMP Email configuration - EC functionalities are working as expected
         Given user navigates to the APM application to access configurations menu - DMP Automation
         When user enter valid admin login credentials - DMP Automation
@@ -33,7 +33,7 @@ Feature: Configuration module DMP Automation functionalities for APM application
         When choose DMP Automation from configurations menu - DMP Automation
         Then verify Email config - EC search and edit actions - DMP Automation
 
-    @CONFIGDMP1
+    @CONFIGDMP
     Scenario Outline: Verify the DMP Email configuration - Plano functionalities are working as expected
         Given user navigates to the APM application to access configurations menu - DMP Automation
         When user enter valid admin login credentials - DMP Automation
@@ -42,7 +42,7 @@ Feature: Configuration module DMP Automation functionalities for APM application
         Then verify Email config - Plano search and edit actions - DMP Automation
 
 
-    @CONFIGDMP1
+    @CONFIGDMP
     Scenario Outline: Verify the Invalid keyword search for Email configuration - EC & Plano are working as expected
         Given user navigates to the APM application to access configurations menu - DMP Automation
         When user enter valid admin login credentials - DMP Automation
