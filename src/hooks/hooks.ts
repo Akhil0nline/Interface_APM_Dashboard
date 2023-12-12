@@ -45,8 +45,17 @@ Before("@auth", async function ({ pickle }) {
 After(async function ({ pickle, result }) {
     let videoPath: string;
     let img: Buffer;
-
     if (result?.status == Status.PASSED) {
+        img = await fixture.page.screenshot({ path: `./test-results/screenshots/${pickle.name}.png`, type: "png" })
+        videoPath = await fixture.page.video().path();
+    }
+
+    if (result?.status == Status.FAILED) {
+        img = await fixture.page.screenshot({ path: `./test-results/screenshots/${pickle.name}.png`, type: "png" })
+        videoPath = await fixture.page.video().path();
+    }
+
+    if (result?.status == Status.SKIPPED) {
         img = await fixture.page.screenshot({ path: `./test-results/screenshots/${pickle.name}.png`, type: "png" })
         videoPath = await fixture.page.video().path();
     }
@@ -65,14 +74,16 @@ After(async function ({ pickle, result }) {
     }
 
     if (result?.status == Status.FAILED) {
-        img = await fixture.page.screenshot({ path: `./test-results/screenshots/${pickle.name}.png`, type: "png" })
-        videoPath = await fixture.page.video().path();
+        await this.attach(
+            img, "image/png"
+        );
+        await this.attach(
+            fs.readFileSync(videoPath),
+            'video/webm'
+        );
     }
 
-    await fixture.page.close();
-    await context.close();
-
-    if (result?.status == Status.FAILED) {
+    if (result?.status == Status.SKIPPED) {
         await this.attach(
             img, "image/png"
         );
