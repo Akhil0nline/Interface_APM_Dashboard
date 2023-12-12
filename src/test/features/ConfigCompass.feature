@@ -32,7 +32,7 @@ Feature: Configuration module Compass and Manituo functionalities for APM applic
         When choose compass and manitou from configurations menu
         Then verify the failue threshold edit actions
 
-    @CONFIG1
+    @CONFIG
     Scenario Outline: Verify the Email configuration - EC functionalities are working as expected
         Given user navigates to the APM application to access configurations menu
         When user enter valid admin login credentials for APM
