@@ -42,6 +42,12 @@ Then('verify the apply filters for reports compass and manituo', async () => {
 
 })
 
+Then('click to export to excel and the validation message should displayed', async () => {
+
+    await ReportsCompassPage.Alldropdowns_Happyflow();
+
+})
+
 Then('click to export to excel without click on Apply filter button', async () => {
 
     await ReportsCompassPage.Alldropdowns_Negative();
@@ -67,6 +73,13 @@ Then('user fill from date and to date and it should work for valid date search',
 Then('user select custom and without fill dates should displayed validation error message', async () => {
 
     await ReportsCompassPage.CustomNodateselected();
+
+})
+
+Then('click to export to excel and should successfully exported', async () => {
+
+    await ReportsCompassPage.KeywordFilter(data.Keyword);
+    await ReportsCompassPage.Excelexportwithdata();
 
 })
 

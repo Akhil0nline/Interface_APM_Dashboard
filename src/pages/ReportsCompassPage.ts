@@ -37,7 +37,7 @@ export default class ReportCompassPage {
         RobotValue4: "//span[text()='EC Virtual Bot ']",
         RobotValue5: "//span[text()='Plano Virtual Bot ']",
 
-        ProcessedDate: "//div[@class='mat-mdc-form-field-infix ng-tns-c5-42']",
+        ProcessedDate: "//span[text()='Today']",
         ProcessedDateValue1: "//span[text()='Today']",
         ProcessedDateValue2: "//span[text()=' Weekly ']",
         ProcessedDateValue3: "//span[text()=' Monthly ']",
@@ -328,6 +328,7 @@ export default class ReportCompassPage {
         await fixture.page.waitForTimeout(5000);
         await this.page.click(this.Elements.ProcessedDate);
         await this.page.click(this.Elements.ProcessedDateValue2);
+        await fixture.page.waitForTimeout(5000);
         await this.page.click(this.Elements.KeywordFilter);
         await this.page.type(this.Elements.KeywordFilter, Keyword)
         await fixture.page.waitForTimeout(5000);
@@ -367,6 +368,27 @@ export default class ReportCompassPage {
         else {
             await fixture.page.waitForTimeout(5000);
             console.log("No validation for blank date search : Testcase is failed")
+
+        }
+    }
+
+    async Excelexportwithdata() {
+        await fixture.page.waitForTimeout(5000);
+        await this.page.click(this.Elements.ExportExcel);
+    }
+
+    async NodataExcelexport() {
+        await fixture.page.waitForTimeout(5000);
+        await this.page.click(this.Elements.ExportExcel)
+        const Searchresult = await this.page.locator(this.Elements.NodataToast)
+        if (await Searchresult.isVisible()) {
+
+            console.log(this.page.innerText(this.Elements.NodataToast) + "Testcase is passed")
+
+        }
+        else {
+            await fixture.page.waitForTimeout(5000);
+            console.log("Excel exported without data : Testcase is failed")
 
         }
     }
