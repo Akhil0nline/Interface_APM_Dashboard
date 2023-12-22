@@ -7,7 +7,6 @@ import { ifError } from "assert";
 
 export default class ConfigDMPAutoPage {
     constructor(private page: Page) {
-
     }
 
     private Elements = {
@@ -39,16 +38,12 @@ export default class ConfigDMPAutoPage {
         ProcessName: "//td[text()=' OracleFailOver_Notification_Cc ']",
         createicon4th: "(//i[text()='create'])[4]",
         createicon5th: "(//i[text()='create'])[5]"
-
-
     }
 
 
     async navigatetomenu() {
         await this.page.click(this.Elements.ConfigurationsMenu);
         await this.page.click(this.Elements.DMPAutomation);
-
-
     }
 
     async Automation_EC() {

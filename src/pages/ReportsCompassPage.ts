@@ -14,7 +14,7 @@ export default class ReportCompassPage {
         ReportMenu: "(//span[@class='mat-mdc-button-touch-target'])[3]",
         ReportCompassManitou: "//a[contains(text(),'Compass & Manitou')]",
 
-        Dropdown1: "//div[@class='mat-mdc-form-field-infix ng-tns-c5-33']",
+        Dropdown1: "//span[text()='Case']",
         Drop1Value1: "//span[text()=' Case ']",
         Drop1Value2: "//span[text()=' Excel ']",
 
@@ -59,7 +59,9 @@ export default class ReportCompassPage {
 
         TitleListing: "(//td[@role='cell']//i)[1]",
 
-        CaseQueueNumber: "(//div[@class='infoWrapper infoLeftWrapper']//span)[2]"
+        CaseQueueNumber: "(//div[@class='infoWrapper infoLeftWrapper']//span)[2]",
+
+        ClosePopup: "(//span[@class='mat-mdc-button-touch-target'])[11]/.."
 
 
 
@@ -73,15 +75,13 @@ export default class ReportCompassPage {
     }
 
     async Alldropdowns_Happyflow() {
-
-
         await fixture.page.waitForTimeout(5000);
         await this.page.click(this.Elements.Dropdown1);
         await this.page.click(this.Elements.Drop1Value2);
 
-        await fixture.page.waitForTimeout(5000);
-        await this.page.click(this.Elements.CaseOrgin);
-        await this.page.click(this.Elements.CaseOrginValue1);
+        //await fixture.page.waitForTimeout(5000);
+        //await this.page.click(this.Elements.CaseOrgin);
+        //await this.page.click(this.Elements.CaseOrginValue1);
 
         await fixture.page.waitForTimeout(5000);
         await this.page.click(this.Elements.Status);
@@ -93,7 +93,7 @@ export default class ReportCompassPage {
 
         await fixture.page.waitForTimeout(5000);
         await this.page.click(this.Elements.ProcessedDate);
-        await this.page.click(this.Elements.ProcessedDateValue1);
+        await this.page.click(this.Elements.ProcessedDateValue2);
 
         await fixture.page.waitForTimeout(5000);
         await this.page.click(this.Elements.ApplyFilter);
@@ -101,8 +101,8 @@ export default class ReportCompassPage {
         const Searchresult = await this.page.locator(this.Elements.NoResultmessage)
         if (await Searchresult.isVisible()) {
 
-
-            console.log(this.page.innerText(this.Elements.NoResultmessage))
+            const displayedmessage = await this.page.innerText(this.Elements.NoResultmessage)
+            console.log(displayedmessage)
 
         }
         else {
@@ -112,9 +112,7 @@ export default class ReportCompassPage {
             const casenumber = await this.page.innerText(this.Elements.CaseQueueNumber)
             console.log("Case queue number is " + casenumber)
 
-
         }
-
 
     }
 
@@ -125,21 +123,19 @@ export default class ReportCompassPage {
         await fixture.page.waitForTimeout(5000);
         await this.page.click(this.Elements.ApplyFilter);
 
-        const Searchresult = await this.page.locator(this.Elements.NoResultmessage)
+        const Searchresult = await this.page.locator(this.Elements.NoResultmessage);
         if (await Searchresult.isVisible()) {
 
-
-            console.log(this.page.innerText(this.Elements.NoResultmessage))
+            const NoResultmessage = await this.page.innerText(this.Elements.NoResultmessage);
+            console.log(NoResultmessage + "for Report Based On field");
 
         }
         else {
             await fixture.page.waitForTimeout(5000);
             await this.page.click(this.Elements.TitleListing);
             await fixture.page.waitForTimeout(5000);
-            const casenumber = await this.page.innerText(this.Elements.CaseQueueNumber)
-            console.log("Case queue number is " + casenumber)
-
-
+            const casenumber = await this.page.innerText(this.Elements.CaseQueueNumber);
+            console.log("Case queue number is " + casenumber);
         }
 
     }
@@ -154,16 +150,17 @@ export default class ReportCompassPage {
         const Searchresult = await this.page.locator(this.Elements.NoResultmessage)
         if (await Searchresult.isVisible()) {
 
-
-            console.log(this.page.innerText(this.Elements.NoResultmessage))
+            const NoResultmessage = await this.page.innerText(this.Elements.NoResultmessage);
+            console.log(NoResultmessage + "for Case Orgin field");
 
         }
         else {
+
             await fixture.page.waitForTimeout(5000);
             await this.page.click(this.Elements.TitleListing);
             await fixture.page.waitForTimeout(5000);
-            const casenumber = await this.page.innerText(this.Elements.CaseQueueNumber)
-            console.log("Case queue number is " + casenumber)
+            const casenumber = await this.page.innerText(this.Elements.CaseQueueNumber);
+            console.log("Case queue number is " + casenumber);
 
 
         }
@@ -181,15 +178,17 @@ export default class ReportCompassPage {
         if (await Searchresult.isVisible()) {
 
 
-            console.log(this.page.innerText(this.Elements.NoResultmessage))
+            const NoResultmessage = await this.page.innerText(this.Elements.NoResultmessage);
+            console.log(NoResultmessage + "for Status field");
 
         }
         else {
+
             await fixture.page.waitForTimeout(5000);
             await this.page.click(this.Elements.TitleListing);
             await fixture.page.waitForTimeout(5000);
-            const casenumber = await this.page.innerText(this.Elements.CaseQueueNumber)
-            console.log("Case queue number is " + casenumber)
+            const casenumber = await this.page.innerText(this.Elements.CaseQueueNumber);
+            console.log("Case queue number is " + casenumber);
 
 
         }
@@ -207,15 +206,17 @@ export default class ReportCompassPage {
         if (await Searchresult.isVisible()) {
 
 
-            console.log(this.page.innerText(this.Elements.NoResultmessage))
+            const NoResultmessage = await this.page.innerText(this.Elements.NoResultmessage);
+            console.log(NoResultmessage + "for Robot field");
 
         }
         else {
+
             await fixture.page.waitForTimeout(5000);
             await this.page.click(this.Elements.TitleListing);
             await fixture.page.waitForTimeout(5000);
-            const casenumber = await this.page.innerText(this.Elements.CaseQueueNumber)
-            console.log("Case queue number is " + casenumber)
+            const casenumber = await this.page.innerText(this.Elements.CaseQueueNumber);
+            console.log("Case queue number is " + casenumber);
 
 
         }
@@ -232,17 +233,17 @@ export default class ReportCompassPage {
         const Searchresult = await this.page.locator(this.Elements.NoResultmessage)
         if (await Searchresult.isVisible()) {
 
-
-            console.log(this.page.innerText(this.Elements.NoResultmessage))
+            const NoResultmessage = await this.page.innerText(this.Elements.NoResultmessage);
+            console.log(NoResultmessage + "for Processed Date field");
 
         }
         else {
+
             await fixture.page.waitForTimeout(5000);
             await this.page.click(this.Elements.TitleListing);
             await fixture.page.waitForTimeout(5000);
-            const casenumber = await this.page.innerText(this.Elements.CaseQueueNumber)
-            console.log("Case queue number is " + casenumber)
-
+            const casenumber = await this.page.innerText(this.Elements.CaseQueueNumber);
+            console.log("Case queue number is " + casenumber);
 
         }
 
@@ -265,13 +266,14 @@ export default class ReportCompassPage {
             await fixture.page.waitForTimeout(5000);
             await this.page.click(this.Elements.TitleListing);
             await fixture.page.waitForTimeout(5000);
-            const casenumber = await this.page.innerText(this.Elements.CaseQueueNumber)
-            console.log("Case queue number is " + casenumber)
+            const casenumber = await this.page.innerText(this.Elements.CaseQueueNumber);
+            console.log("Case queue number is " + casenumber);
 
         }
         else {
 
-            console.log(this.page.innerText(this.Elements.NoResultmessage))
+            const NoResultmessage = await this.page.innerText(this.Elements.NoResultmessage);
+            console.log(NoResultmessage + "for Custom processed date field");
 
 
         }
@@ -282,7 +284,7 @@ export default class ReportCompassPage {
 
         await fixture.page.waitForTimeout(5000);
         await this.page.click(this.Elements.Dropdown1);
-        await this.page.click(this.Elements.Drop1Value2);
+        await this.page.click(this.Elements.Drop1Value1);
 
         await fixture.page.waitForTimeout(5000);
         await this.page.click(this.Elements.CaseOrgin);
@@ -306,12 +308,12 @@ export default class ReportCompassPage {
 
         await fixture.page.waitForTimeout(5000);
         await this.page.click(this.Elements.ExportExcel);
-
-        const Searchresult = await this.page.locator(this.Elements.NoResultmessage)
+        await fixture.page.waitForTimeout(3000);
+        const Searchresult = await this.page.locator(this.Elements.NoResultmessage);
         if (await Searchresult.isVisible()) {
 
-
-            console.log(this.page.innerText(this.Elements.NodataToast) + "Testcase is failed")
+            const displayedmessage = await this.page.innerText(this.Elements.NoResultmessage);
+            console.log("Testcase is failed : Applied filter not clicked but export to excel worked" + displayedmessage);
 
         }
         else {
@@ -339,9 +341,10 @@ export default class ReportCompassPage {
 
             await fixture.page.waitForTimeout(5000);
             await this.page.click(this.Elements.TitleListing);
-            await fixture.page.waitForTimeout(5000);
             const casenumber = await this.page.innerText(this.Elements.CaseQueueNumber)
             console.log("Case queue number is " + casenumber)
+            await fixture.page.waitForTimeout(3000);
+            await this.page.click(this.Elements.ClosePopup);
 
         }
         else {
@@ -362,7 +365,8 @@ export default class ReportCompassPage {
         const Searchresult = await this.page.locator(this.Elements.NodataToast)
         if (await Searchresult.isVisible()) {
 
-            console.log(this.page.innerText(this.Elements.NodataToast) + "Testcase is passed")
+            const NodataToast = await this.page.innerText(this.Elements.NodataToast)
+            console.log(NodataToast + " Testcase is passed")
 
         }
         else {
@@ -373,8 +377,24 @@ export default class ReportCompassPage {
     }
 
     async Excelexportwithdata() {
-        await fixture.page.waitForTimeout(5000);
+
         await this.page.click(this.Elements.ExportExcel);
+        await fixture.page.waitForTimeout(5000);
+        const Searchresult = await this.page.locator(this.Elements.NodataToast);
+        if (await Searchresult.isVisible()) {
+
+            await fixture.page.waitForTimeout(5000);
+            const displayedmessage = await this.page.innerText(this.Elements.NodataToast)
+            console.log(displayedmessage)
+
+        }
+        else {
+
+            await this.page.click(this.Elements.TitleListing)
+            const casenumber = await this.page.innerText(this.Elements.CaseQueueNumber)
+            console.log("Case queue number is " + casenumber)
+
+        }
     }
 
     async NodataExcelexport() {
@@ -382,8 +402,8 @@ export default class ReportCompassPage {
         await this.page.click(this.Elements.ExportExcel)
         const Searchresult = await this.page.locator(this.Elements.NodataToast)
         if (await Searchresult.isVisible()) {
-
-            console.log(this.page.innerText(this.Elements.NodataToast) + "Testcase is passed")
+            const NodataToast = await this.page.innerText(this.Elements.NodataToast)
+            console.log(NodataToast + "Testcase is passed")
 
         }
         else {

@@ -112,8 +112,6 @@ export default class QueuePage {
             console.log(TitleTable);
 
         }
-
-
     }
 
     async Keywordfilter(Keyword: string) {

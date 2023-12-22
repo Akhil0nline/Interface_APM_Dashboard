@@ -45,6 +45,7 @@ Then('verify the apply filters for reports compass and manituo', async () => {
 Then('click to export to excel and the validation message should displayed', async () => {
 
     await ReportsCompassPage.Alldropdowns_Happyflow();
+    await ReportsCompassPage.Excelexportwithdata();
 
 })
 
