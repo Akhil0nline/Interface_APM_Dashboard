@@ -94,6 +94,43 @@ export default class DMPSMPage {
             console.log("Case queue number is " + casenumber)
 
         }
-
     }
+
+    async Excelexportwithdata() {
+
+        await this.page.click(this.Elements.ExportExcel);
+        await fixture.page.waitForTimeout(5000);
+        const Searchresult = await this.page.locator(this.Elements.NodataToast);
+        if (await Searchresult.isVisible()) {
+
+            await fixture.page.waitForTimeout(5000);
+            const displayedmessage = await this.page.innerText(this.Elements.NodataToast)
+            console.log(displayedmessage)
+
+        }
+        else {
+
+            await this.page.click(this.Elements.TitleListing)
+            const casenumber = await this.page.innerText(this.Elements.CaseQueueNumber)
+            console.log("Case queue number is " + casenumber)
+
+        }
+    }
+
+    async NodataExcelexport() {
+        await fixture.page.waitForTimeout(5000);
+        await this.page.click(this.Elements.ExportExcel)
+        const Searchresult = await this.page.locator(this.Elements.NodataToast)
+        if (await Searchresult.isVisible()) {
+            const NodataToast = await this.page.innerText(this.Elements.NodataToast)
+            console.log(NodataToast + "Testcase is passed")
+
+        }
+        else {
+            await fixture.page.waitForTimeout(5000);
+            console.log("Excel exported without data : Testcase is failed")
+
+        }
+    }
+
 }
