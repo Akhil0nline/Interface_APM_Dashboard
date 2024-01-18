@@ -13,6 +13,7 @@ let context: BrowserContext;
 BeforeAll(async function () {
     getEnv();
     browser = await invokeBrowser();
+
 });
 // It will trigger for not auth scenarios
 Before(async function ({ pickle }) {

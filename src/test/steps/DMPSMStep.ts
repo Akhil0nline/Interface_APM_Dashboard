@@ -36,13 +36,20 @@ When('user select compass and manitou from reports menu - DMP SM', async () => {
 
 })
 
-Then('verify the apply filters for reports compass and manituo - DMP SM', async () => {
+Then('verify the apply filters for reports DMP SM', async () => {
 
     await DMPSMPage.Alldropdowns_Happyflow();
 
 })
 
 Then('click to export to excel and the validation message should displayed - DMP SM', async () => {
+
+    await DMPSMPage.Alldropdowns_Happyflow();
+    await DMPSMPage.Excelexportwithdata();
+
+})
+
+Then('click to export to excel and should successfully exported - DMP SM', async () => {
 
     await DMPSMPage.Alldropdowns_Happyflow();
     await DMPSMPage.Excelexportwithdata();
