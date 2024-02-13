@@ -29,7 +29,7 @@ export default class QueuePage {
         StatusSort: "//div[text()=' Status ']",
         CreatedBy: "//table[contains(@class,'mat-mdc-table mdc-data-table__table')]",
         CaseQueueNo: "(//div[@class='infoWrapper infoLeftWrapper']//span)[2]",
-        PopupClose: "(//span[@class='mat-mdc-button-touch-target'])[11]",
+        PopupClose: "(//span[@class='mat-mdc-button-touch-target'])[10]",
         Excel: "//span[text()='Export to Excel']",
         ValidationExcel: "//div[contains(text(), ' No data available to export ')]"
 
