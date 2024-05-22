@@ -52,12 +52,7 @@ export default class ConfigCompassPage {
         EditConfigEmail: "(//i[text()='create'])[1]",
         Valuebox: "//textarea[@placeholder='Value']",
 
-
-
-
-
-
-    }
+}
 
     async navigatetomenu() {
         await this.page.click(this.Elements.ConfigurationsMenu);
